@@ -21,7 +21,7 @@ public class APICallExecutorService {
 				try {
 					Thread.sleep(getRandomSleepTime()*1000);
 				} catch (InterruptedException e1) {
-					logger.error("Error:"+e1.getMessage());
+					System.out.println("Error:"+e1.getMessage());
 				}
 			Runnable worker = new MyRunnable(url);
 			executor.execute(worker);
@@ -31,7 +31,7 @@ public class APICallExecutorService {
 		while (!executor.isTerminated()) {
  
 		}
-		logger.info("\nFinished all threads");
+		System.out.println("\nFinished all threads");
 	}
  
 	public static class MyRunnable implements Runnable {
@@ -66,12 +66,12 @@ public class APICallExecutorService {
 					in.close();
 
 					// print result
-					logger.info("Thread"+threadNum+":"+response.toString());
+					System.out.println("Thread"+threadNum+":"+response.toString());
 				} else {
-					logger.info("API GET request not worked");
+					System.out.println("API GET request not worked");
 				}
 			} catch (Exception e) {
-				logger.error("Error response:"+e.getMessage());
+				System.out.println("Error response:"+e.getMessage());
 			}
 		}
 	}
